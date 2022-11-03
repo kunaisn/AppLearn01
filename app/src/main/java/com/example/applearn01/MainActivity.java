@@ -10,17 +10,18 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView title;
-
+    private Button start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         title = findViewById(R.id.title);
+        title.setText("RSA暗号を試す");
 
         ((Button)findViewById(R.id.startButton)).setOnClickListener(this);
-
-
+        start = findViewById(R.id.startButton);
+        start.setText("はじめる");
 
     }
 
