@@ -4,30 +4,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView title = findViewById(R.id.title);
+        title = findViewById(R.id.title);
 
-        ((BUtton)findViewById(R.id.startButton)).setOnClickListener(this);
+        ((Button)findViewById(R.id.startButton)).setOnClickListener(this);
 
 
 
     }
 
     @Override
-    public void onClick() {
+    public void onClick(View view) {
 
-        swhich(view.getId()) {
-            case (R.id.staetButton):
+        switch(view.getId()) {
+            case (R.id.startButton):
+                title.setText("changeText");
+                break;
+            default:
                 break;
         }
 
