@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 public class planeText2 extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String EXTRA_DATA_D = "com.example.applearn01.DATAD";
 
     TextView error3;
     TextView textSecKey;
@@ -59,6 +62,16 @@ public class planeText2 extends AppCompatActivity implements View.OnClickListene
 
             case (R.id.createSecKey):
                 d = createD(e);
+                if(d == -1) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "秘密鍵が見つかりませんでした",
+                            Toast.LENGTH_SHORT
+                    );
+                    toast.show();
+                    Intent intentBack2 = new Intent(this, createKeys.class);
+                    startActivity(intentBack2);
+                    break;
+                }
                 String strSecKey = "（" + n + ", " + d + "）";
                 textSecKey.setText(strSecKey);
                 break;
@@ -67,7 +80,11 @@ public class planeText2 extends AppCompatActivity implements View.OnClickListene
                 error3.setText("");
                 try {
 
+                    if(d == -1) throw new Exception();
                     Intent intentPub = new Intent(this, planeText2.class);
+                    intentPub.putExtra(planeText.EXTRA_DATA_N, n);
+                    intentPub.putExtra(planeText.EXTRA_DATA_E, e);
+                    intentPub.putExtra(EXTRA_DATA_D, d);
                     startActivity(intentPub);
 
                 } catch (Exception e) {
@@ -82,21 +99,12 @@ public class planeText2 extends AppCompatActivity implements View.OnClickListene
     }
 
     public long createD(long num) {
-        Random r = new Random();
         long q = 0;
-        for(int i=1000; i<1000000000; i++) {
+        for(int i=1000; i<1000000; i++) {
             q = num * i % l;
             if(q == 1) return i;
         }
         return -1;
-    }
-
-    public static long gcd(long ePro, long num) {
-        long upper = Math.max(ePro, num);
-        long lower = Math.min(ePro, num);
-        long q = upper % lower;
-        if(q == 0) return lower;
-        return gcd(lower, q);
     }
 
 }

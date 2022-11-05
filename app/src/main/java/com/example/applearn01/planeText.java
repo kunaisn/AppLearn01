@@ -113,7 +113,7 @@ public class planeText extends AppCompatActivity implements View.OnClickListener
         long gcdNum = 0;
         long ePro = 0;
         while(gcdNum != 1) {
-            ePro = r.nextInt(9999000) + 1000;
+            ePro = r.nextInt(999900) + 100;
             gcdNum = gcd(ePro, num);
         }
         return ePro;

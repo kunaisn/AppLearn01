@@ -90,7 +90,7 @@ public class createKeys extends AppCompatActivity implements View.OnClickListene
         int result = -1;
         boolean conFlag = true;
         while(conFlag) {
-            result = r.nextInt(9999000) + 1000;
+            result = r.nextInt(999900) + 100;
             if(isPrimeNum(result)) conFlag = false;
         }
         return result;
